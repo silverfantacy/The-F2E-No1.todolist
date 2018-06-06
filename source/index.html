@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>No1.todolist</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="stylesheets\all.css">
+</head>
+
+<body>
+  <div id="app">
+    <header class="bg-primary">
+      <ul class="d-flex justify-content-between text-secondary mx-auto pl-0 text-center">
+        <li class="text-light hover">My Tasks</li>
+        <li>In Progress</li>
+        <li>Completed</li>
+      </ul>
+    </header>
+
+    <body>
+      <div class="container">
+        <input type="text" class="form-control my-4" placeholder="＋ Add Task">
+        <ul class="list pl-0">
+          <li class="bg-info d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-center">
+              <input type="checkbox" name="" id="Something">
+              <label for="Something" class="text-truncate mb-0">Type Something Here…</label>
+              <div class="btn-group ml-auto" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-info py-0">
+                  <i class="fas fa-star"></i>
+                </button>
+                <button type="button" class="btn btn-info py-0">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button type="button" class="btn btn-info py-0">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="d-flex justify-content-sm-start align-items-center todo-info">
+              <span class="mr-3">
+                <i class="far fa-calendar-alt"></i> 2018/05/04</span>
+              <i class="far fa-file mr-3"></i>
+              <i class="far fa-comment-dots mr-3"></i>
+            </div>
+          </li>
+          <li class="bg-light d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-center">
+              <input type="checkbox" name="" id="Something2">
+              <label for="Something2" class="text-truncate mb-0 completed">Type Something Here…</label>
+              <div class="btn-group ml-auto" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-light py-0">
+                  <i class="far fa-star"></i>
+                </button>
+                <button type="button" class="btn btn-light py-0">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button type="button" class="btn btn-light py-0">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="d-flex justify-content-sm-start align-items-center todo-info">
+              <span class="mr-3">
+                <i class="far fa-calendar-alt"></i> 2018/05/04</span>
+              <i class="far fa-file mr-3"></i>
+              <i class="far fa-comment-dots mr-3"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </body>
+  </div>
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script> -->
+  <script src="javascripts/vendor.js"></script>
+</body>
+
+</html>
