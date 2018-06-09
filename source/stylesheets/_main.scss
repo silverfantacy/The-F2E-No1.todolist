@@ -182,7 +182,7 @@ input[type="checkbox"]:checked+label::before {
 }
 
 .card-body {
-  // background-color: $gray-light;
+  background-color: $gray-light;
   padding: 1.5rem 4.5rem;
   label {
     @include subtitele;

@@ -24,26 +24,20 @@
 
     <body>
       <div class="container">
-        <input type="text" class="form-control my-4" placeholder="＋ Add Task">
+        <!-- 新增開始 -->
         <ul class="list pl-0">
-          <!-- 編輯開始 -->
-          <div class="card edit bg-info" :class="{'bg-light': !newTodo.mark}">
-            <div class="card-header d-flex flex-column flex-sm-row  justify-content-sm-between align-items-sm-center">
+          <input type="text" class="form-control my-4" placeholder="＋ Add Task" @click="addTask = !addTask" v-if="!addTask">
+          <div class="card edit" v-if="addTask">
+            <div class="card-header bg-info d-flex flex-column flex-sm-row  justify-content-sm-between align-items-sm-center" :class="{'bg-light': !newTodo.mark}">
               <div>
-                <input type="checkbox" name="" id="Something4" v-model="newTodo.completed" @click="newTodo.completed = !newTodo.completed">
-                <label for="Something4" class="text-truncate mb-0"></label>
-                <input type="text" name="" id="12345" v-model="newTodo.title" :class="{'completed':newTodo.completed,'bg-info': newTodo.mark}">
+                <input type="checkbox" name="" id="addSomething" v-model="newTodo.completed" @click="newTodo.completed = !newTodo.completed">
+                <label for="addSomething" class="text-truncate mb-0"></label>
+                <input type="text" name="" v-model="newTodo.title" :class="{'completed':newTodo.completed,'bg-info': newTodo.mark}">
               </div>
               <div class="btn-group ml-auto" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-info py-0" @click="newTodo.mark = !newTodo.mark" :class="{'bg-light': !newTodo.mark}">
                   <i class="fas fa-star" v-if="newTodo.mark"></i>
                   <i class="far fa-star" v-if="!newTodo.mark"></i>
-                </button>
-                <button type="button" class="btn btn-info py-0 text-primary" :class="{'bg-light': !newTodo.mark}">
-                  <i class="fas fa-pencil-alt"></i>
-                </button>
-                <button type="button" class="btn btn-info py-0" :class="{'bg-light': !newTodo.mark}">
-                  <i class="fas fa-times"></i>
                 </button>
               </div>
             </div>
@@ -73,17 +67,17 @@
             <!-- 詳細內容結束 -->
             <!-- btn開始 -->
             <div class="card-footer p-0 d-flex btn-group">
-              <button type="button" class="btn btn-white btn-block rounded-0 text-danger">
+              <button type="button" class="btn btn-white btn-block rounded-0 text-danger" @click="cancelAdd">
                 <i class="fas fa-times"></i> Cancel</button>
-              <button type="button" class="btn btn-primary btn-block m-0 rounded-0">
+              <button type="button" class="btn btn-primary btn-block m-0 rounded-0" @click="addTodo">
                 <i class="fas fa-plus fa-xs"></i> Add Task</button>
             </div>
             <!-- btn結束 -->
           </div>
-          <!-- 編輯結束 -->
+          <!-- 新增結束 -->
           <!-- 項目開始 -->
           <div v-for="(item,key) in todos">
-            <li class="bg-info d-flex flex-column" :class="{'bg-light': !item.mark}">
+            <li class="bg-info d-flex flex-column" :class="{'bg-light': !item.mark}" v-if="item.id !== cacheTodo.id">
               <div class="d-flex justify-content-between align-items-center">
                 <input type="checkbox" name="" :id="item.id" v-model="item.completed">
                 <label :for="item.id" class="text-truncate mb-0 todoLabel font-weight-bold" :class="{'completed':item.completed}">{{ item.title }}</label>
@@ -92,21 +86,73 @@
                     <i class="fas fa-star" v-if="item.mark"></i>
                     <i class="far fa-star" v-if="!item.mark"></i>
                   </button>
-                  <button type="button" class="btn btn-info py-0" :class="{'bg-light': !item.mark}">
+                  <button type="button" class="btn btn-info py-0" :class="{'bg-light': !item.mark}" @click="editTodo(item)">
                     <i class="fas fa-pencil-alt"></i>
                   </button>
-                  <button type="button" class="btn btn-info py-0" :class="{'bg-light': !item.mark}">
+                  <button type="button" class="btn btn-info py-0" :class="{'bg-light': !item.mark}" @click="removeTodo">
                     <i class="fas fa-times"></i>
                   </button>
                 </div>
               </div>
               <div class="d-flex justify-content-sm-start align-items-center todo-info">
                 <span class="mr-3">
-                  <i class="far fa-calendar-alt"></i> {{ item.deadlineDate }}</span>
+                  <i class="far fa-calendar-alt" v-if="item.deadlineDate !== ''"></i> {{ item.deadlineDate }}</span>
                 <i class="far fa-file mr-3" v-if="item.file !== ''"></i>
                 <i class="far fa-comment-dots mr-3" v-if="item.comment !== ''"></i>
               </div>
             </li>
+            <!-- 編輯開始 -->
+            <div class="card edit" v-if="cacheTodo != ''">
+              <div class="card-header bg-info d-flex flex-column flex-sm-row  justify-content-sm-between align-items-sm-center" :class="{'bg-light': !cacheTodo.mark}">
+                <div>
+                  <input type="checkbox" name="" id="editSomething" v-model="cacheTodo.completed" @click="cacheTodo.completed = !cacheTodo.completed">
+                  <label for="editSomething" class="text-truncate mb-0"></label>
+                  <input type="text" name="" v-model="cacheTodo.title" :class="{'completed':cacheTodo.completed,'bg-info': cacheTodo.mark}">
+                </div>
+                <div class="btn-group ml-auto" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-info py-0" @click="cacheTodo.mark = !cacheTodo.mark" :class="{'bg-light': !cacheTodo.mark}">
+                    <i class="fas fa-star" v-if="cacheTodo.mark"></i>
+                    <i class="far fa-star" v-if="!cacheTodo.mark"></i>
+                  </button>
+                  <button type="button" class="btn btn-info py-0 text-primary" :class="{'bg-light': !cacheTodo.mark}">
+                    <i class="fas fa-pencil-alt"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- 詳細內容開始 -->
+              <div class="card-body">
+                <form>
+                  <div class="form-group label-date">
+                    <label for="FormControlDate">
+                      <i class="far fa-calendar-alt"></i>Deadline</label>
+                    <div class="d-flex flex-column flex-sm-row" style="margin-left: 26px;">
+                      <input type="date" class="form-control-file" id="FormControlDate" :vaule="cacheTodo.deadlineDate" v-model="cacheTodo.deadlineDate">
+                      <input type="time" class="form-control-file" id="FormControlTime" :vaule="cacheTodo.deadlineTime" v-model="cacheTodo.deadlineTime">
+                    </div>
+                  </div>
+                  <div class="form-group label-file">
+                    <label for="FormControlFile">
+                      <i class="far fa-file"></i>File</label>
+                    <input type="file" class="form-control-file" id="FormControlFile">
+                  </div>
+                  <div class="form-group label-comment">
+                    <label for="FormControlFile">
+                      <i class="far fa-comment-dots"></i>Comment</label>
+                    <textarea type="text" class="form-control-file" id="FormControlComment" placeholder="Type your memo here…" v-model="cacheTodo.comment">{{ cacheTodo.comment }}</textarea>
+                  </div>
+                </form>
+              </div>
+              <!-- 詳細內容結束 -->
+              <!-- btn開始 -->
+              <div class="card-footer p-0 d-flex btn-group">
+                <button type="button" class="btn btn-white btn-block rounded-0 text-danger" @click="cancelEdit">
+                  <i class="fas fa-times"></i> Cancel</button>
+                <button type="button" class="btn btn-primary btn-block m-0 rounded-0" @click="saveTodo">
+                  <i class="fas fa-plus fa-xs"></i> Save</button>
+              </div>
+              <!-- btn結束 -->
+            </div>
+            <!-- 編輯結束 -->
           </div>
           <!-- 項目結束 -->
           <!-- 項目開始 -->
