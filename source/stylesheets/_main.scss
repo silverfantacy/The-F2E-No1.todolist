@@ -50,7 +50,7 @@ header {
     list-style: none;
     @include title;
     max-width: 660px;
-    height: 76px;
+    min-height: 76px;
     line-height: 76px;
     li {
       position: relative;
@@ -146,7 +146,7 @@ input[type="checkbox"]:checked+label::before {
 
 // ====Edit CARD=========================
 .edit {
-  width: 620px;
+  max-width: 620px;
   border: none;
   box-shadow: 0 4px 4px 0 $gray;
   border-radius: 5px;
@@ -161,7 +161,7 @@ input[type="checkbox"]:checked+label::before {
 }
 
 .card-header {
-  background-color: $gray-light;
+  background-color: rgba(0, 0, 0, 0);
   padding: 1rem 2rem;
   border-bottom: 2px solid $gray;
   input[type="text"] {
@@ -175,11 +175,14 @@ input[type="checkbox"]:checked+label::before {
     background-color: $gray-light;
     outline: none;
     font-weight: bold;
+    @include media-breakpoint-down(sm) {
+      max-width: 160px;
+    }
   }
 }
 
 .card-body {
-  background-color: $gray-light;
+  // background-color: $gray-light;
   padding: 1.5rem 4.5rem;
   label {
     @include subtitele;
@@ -194,14 +197,17 @@ input[type="checkbox"]:checked+label::before {
     input {
       width: 162px;
       height: 35px;
-      padding: 8px 1rem;
+      padding: 8px 0rem 8px 1rem;
       font-weight: initial;
       font-size: 1rem !important;
-      line-height: 28px;
+      line-height: 35px;
       border: none;
       margin-right: 8px;
       &::placeholder {
         color: $gray !important;
+      }
+      @include media-breakpoint-down(sm) {
+        max-width: 100%;
       }
     }
   }
@@ -252,8 +258,7 @@ input[type="checkbox"]:checked+label::before {
   overflow: hidden;
   button {
     @include paragraph;
-    height: 60px;
-    // .btn-primary:focus {
+    height: 60px; // .btn-primary:focus {
     //   border-color: none;
     // }
   }
