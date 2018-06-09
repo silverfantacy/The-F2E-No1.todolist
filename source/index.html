@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>No1.todolist</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
   <link rel="stylesheet" href="stylesheets\all.css">
@@ -26,10 +26,62 @@
       <div class="container">
         <input type="text" class="form-control my-4" placeholder="＋ Add Task">
         <ul class="list pl-0">
+          <!-- 編輯開始 -->
+          <div class="card edit">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <input type="checkbox" name="" id="Something4">
+              <label for="Something4" class="text-truncate mb-0"></label>
+              <input type="text" name="" id="12345" value="我想睡覺">
+              <div class="btn-group ml-auto" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-light py-0">
+                  <i class="fas fa-star"></i>
+                </button>
+                <button type="button" class="btn btn-light py-0 text-primary">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button type="button" class="btn btn-light py-0">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <!-- 詳細內容開始 -->
+            <div class="card-body">
+              <form>
+                <div class="form-group label-date">
+                  <label for="FormControlDate">
+                    <i class="far fa-calendar-alt"></i>Deadline</label>
+                  <div class="d-flex" style="margin-left: 26px;">
+                    <input type="date" class="form-control-file" id="FormControlDate">
+                    <input type="time" class="form-control-file" id="FormControlTime">
+                  </div>
+                </div>
+                <div class="form-group label-file">
+                  <label for="FormControlFile">
+                    <i class="far fa-file"></i>File</label>
+                  <input type="file" class="form-control-file" id="FormControlFile">
+                </div>
+                <div class="form-group label-comment">
+                  <label for="FormControlFile">
+                    <i class="far fa-comment-dots"></i>Comment</label>
+                  <textarea type="text" class="form-control-file" id="FormControlComment" placeholder="Type your memo here…"></textarea>
+                </div>
+              </form>
+            </div>
+            <!-- 詳細內容結束 -->
+            <!-- btn開始 -->
+            <div class="card-footer p-0 d-flex btn-group">
+              <button type="button" class="btn btn-white btn-block rounded-0 text-danger">
+                <i class="fas fa-times"></i> Cancel</button>
+              <button type="button" class="btn btn-primary btn-block m-0 rounded-0"><i class="fas fa-plus fa-xs"></i> Add Task</button>
+            </div>
+            <!-- btn結束 -->
+          </div>
+          <!-- 編輯結束 -->
+          <!-- 項目開始 -->
           <li class="bg-info d-flex flex-column">
             <div class="d-flex justify-content-between align-items-center">
               <input type="checkbox" name="" id="Something">
-              <label for="Something" class="text-truncate mb-0">Type Something Here…</label>
+              <label for="Something" class="text-truncate mb-0 todoLabel font-weight-bold">吃早餐</label>
               <div class="btn-group ml-auto" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-info py-0">
                   <i class="fas fa-star"></i>
@@ -49,6 +101,7 @@
               <i class="far fa-comment-dots mr-3"></i>
             </div>
           </li>
+          <!-- 項目結束 -->
           <li class="bg-light d-flex flex-column">
             <div class="d-flex justify-content-between align-items-center">
               <input type="checkbox" name="" id="Something2">

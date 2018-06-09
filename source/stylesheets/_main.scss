@@ -1,28 +1,28 @@
 $font-size-lg: 1.5rem;
 $font-size-md: 1.25rem;
 @mixin title {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.5rem;
 }
 
 @mixin subtitele {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.25rem;
 }
 
 @mixin paragraph {
-  font-weight: initial;
+  font-weight: 500;
   font-size: 1.25rem;
 }
 
 @mixin remark {
-  font-weight: initial;
+  font-weight: 500;
   font-size: 1.25rem;
   color: $gray-dark;
 }
 
 @mixin status {
-  font-weight: inherit;
+  font-weight: 500;
   font-style: italic;
   font-size: 1.25rem;
   color: $gray;
@@ -73,10 +73,10 @@ header {
 }
 
 body {
-  input {
+  input[type="text"] {
     height: 65px;
     max-width: 620px;
-    padding: 0 2rem !important;
+    padding: 0 2rem;
     font-weight: initial;
     font-size: 1.5rem !important;
     line-height: 28px;
@@ -122,7 +122,7 @@ label::before {
   background: $white;
   vertical-align: middle;
   margin-right: 1rem;
-  transition: background ease-in .1s
+  transition: background ease-in .1s;
 }
 
 input[type="checkbox"]:checked+label::before {
@@ -142,4 +142,119 @@ input[type="checkbox"]:checked+label::before {
   color: $gray-dark;
   font-size: 1rem;
   padding-left: 40px;
+}
+
+// ====Edit CARD=========================
+.edit {
+  width: 620px;
+  border: none;
+  box-shadow: 0 4px 4px 0 $gray;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.card-header>label {
+  height: 28px;
+  &::before {
+    margin-bottom: 4px;
+  }
+}
+
+.card-header {
+  background-color: $gray-light;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid $gray;
+  input[type="text"] {
+    height: 28px;
+    max-width: 620px;
+    padding: 0 !important;
+    font-weight: initial;
+    font-size: 1.5rem !important;
+    line-height: 28px;
+    border: none !important;
+    background-color: $gray-light;
+    outline: none;
+    font-weight: bold;
+  }
+}
+
+.card-body {
+  background-color: $gray-light;
+  padding: 1.5rem 4.5rem;
+  label {
+    @include subtitele;
+    i {
+      margin-right: 9px;
+    }
+    &::before {
+      display: none !important;
+    }
+  }
+  .label-date {
+    input {
+      width: 162px;
+      height: 35px;
+      padding: 8px 1rem;
+      font-weight: initial;
+      font-size: 1rem !important;
+      line-height: 28px;
+      border: none;
+      margin-right: 8px;
+      &::placeholder {
+        color: $gray !important;
+      }
+    }
+  }
+  .label-file {
+    input[type="file"] {
+      display: none;
+    }
+    i {
+      margin-right: 11px;
+    }
+    label::after {
+      content: "＋";
+      display: block;
+      height: 32px;
+      width: 32px;
+      background-color: $gray;
+      line-height: 32px;
+      text-align: center;
+      font-size: 2rem;
+      color: $white;
+      margin-top: 8px;
+      border-radius: 2px;
+      margin-left: 26px;
+    }
+  }
+  .label-comment {
+    i {
+      margin-right: 6px;
+    }
+    textarea {
+      height: 120px;
+      padding: 8px 1rem;
+      font-weight: initial;
+      font-size: 1rem !important;
+      border: none !important;
+      font-size: 1rem;
+      line-height: 24px;
+      margin-left: 26px;
+      color: $black;
+      &::placeholder {
+        color: $gray !important;
+      }
+    }
+  }
+}
+
+.card-footer {
+  overflow: hidden;
+  button {
+    @include paragraph;
+    height: 60px;
+    // .btn-primary:focus {
+    //   border-color: none;
+    // }
+  }
 }
