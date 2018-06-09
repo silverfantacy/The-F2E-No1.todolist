@@ -27,8 +27,8 @@
         <input type="text" class="form-control my-4" placeholder="＋ Add Task">
         <ul class="list pl-0">
           <!-- 編輯開始 -->
-          <div class="card edit bg-info" :class="{'bg-light': !newTodo.mark}">
-            <div class="card-header d-flex flex-column flex-sm-row  justify-content-sm-between align-items-sm-center">
+          <div class="card edit">
+            <div class="card-header bg-info d-flex flex-column flex-sm-row  justify-content-sm-between align-items-sm-center" :class="{'bg-light': !newTodo.mark}">
               <div>
                 <input type="checkbox" name="" id="Something4" v-model="newTodo.completed" @click="newTodo.completed = !newTodo.completed">
                 <label for="Something4" class="text-truncate mb-0"></label>
