@@ -263,3 +263,10 @@ input[type="checkbox"]:checked+label::before {
     // }
   }
 }
+
+footer {
+  span {
+    padding-left: 2rem;
+    @include status;
+  }
+}
